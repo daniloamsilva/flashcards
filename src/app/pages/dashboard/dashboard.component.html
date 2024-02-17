@@ -1,1 +1,8 @@
-<p>dashboard works!</p>
+<h2>Logged user</h2>
+
+@if(user) {
+  <p>UID: {{user.uid}}</p>
+  <p>Name: {{user.displayName}}</p>
+  <p>Email: {{user.email}}</p>
+  <p>Email: <a [href]="user.photoURL" target="_blank">Clique para ver a foto</a> </p>
+}

@@ -3,14 +3,27 @@ import { CanActivateFn, Router } from '@angular/router';
 import { Auth, user } from '@angular/fire/auth';
 import { map, take, tap } from 'rxjs/operators';
 
-export const authGuard: CanActivateFn = (route, state) => {
+import { UserService } from '../services/user.service';
+
+export const authGuard: CanActivateFn = () => {
   const auth = inject(Auth);
   const router = inject(Router);
   const user$ = user(auth);
+  const userService = inject(UserService);
 
   return user$.pipe(
     take(1),
-    map((user) => !!user),
+    map((user) => {
+      if (user) {
+        userService.setUser({
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        });
+      }
+      return !!user;
+    }),
     tap((loggedIn) => {
       if (!loggedIn) {
         router.navigate(['/']);
