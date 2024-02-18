@@ -26,7 +26,7 @@ export class AuthService {
           email: result.user.email,
           photoURL: result.user.photoURL,
         });
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/app/dashboard']);
       })
       .catch((error) => {
         console.warn(
