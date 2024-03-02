@@ -1,8 +1,28 @@
 <h2>Logged user</h2>
 
 @if(user) {
-  <p>UID: {{user.uid}}</p>
-  <p>Name: {{user.displayName}}</p>
-  <p>Email: {{user.email}}</p>
-  <p>Email: <a [href]="user.photoURL" target="_blank">Clique para ver a foto</a> </p>
+<p>UID: {{ user.uid }}</p>
+<p>Name: {{ user.displayName }}</p>
+<p>Email: {{ user.email }}</p>
+<p>
+  Foto: <a [href]="user.photoURL" target="_blank">Clique para ver a foto</a>
+</p>
+
+<hr>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(deck of decks; track deck.uuid) {
+    <tr>
+      <td>{{ deck.name }}</td>
+      <td><button type="button">Ver</button></td>
+    </tr>
+    }
+  </tbody>
+</table>
 }
