@@ -9,6 +9,12 @@
 </p>
 
 <hr>
+
+<form (ngSubmit)="handleCreateDeck()">
+  <input type="text" name="newDeckName" [(ngModel)]="newDeckName">
+  <button type="submit">Enviar</button>
+</form>
+
 <table>
   <thead>
     <tr>

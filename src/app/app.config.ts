@@ -1,7 +1,6 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { FormsModule } from '@angular/forms';
 
 import { routes } from './routes';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -17,6 +16,5 @@ export const appConfig: ApplicationConfig = {
     ),
     importProvidersFrom(provideAuth(() => getAuth())),
     importProvidersFrom(provideFirestore(() => getFirestore())),
-    FormsModule,
   ],
 };
