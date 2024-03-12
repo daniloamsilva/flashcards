@@ -1,0 +1,26 @@
+<hr>
+<a [routerLink]="['/app/dashboard' ]">Voltar</a>
+<hr>
+
+<form (ngSubmit)="handleCreateCard()">
+  <input type="text" name="newCardQuestion" [(ngModel)]="question">
+  <input type="text" name="newCardResponse" [(ngModel)]="response">
+  <button type="submit">Enviar</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pergunta</th>
+      <th>Resposta</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(card of cards; track card.id) {
+    <tr>
+      <td>{{ card.question }}</td>
+      <td>{{ card.response }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

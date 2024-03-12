@@ -21,7 +21,7 @@ export class AuthService {
       .then((result) => {
         GoogleAuthProvider.credentialFromResult(result);
         this.userService.setUser({
-          uid: result.user.uid,
+          id: result.user.uid,
           displayName: result.user.displayName,
           email: result.user.email,
           photoURL: result.user.photoURL,

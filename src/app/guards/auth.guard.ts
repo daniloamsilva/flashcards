@@ -16,7 +16,7 @@ export const authGuard: CanActivateFn = () => {
     map((user) => {
       if (user) {
         userService.setUser({
-          uid: user.uid,
+          id: user.uid,
           displayName: user.displayName,
           email: user.email,
           photoURL: user.photoURL,

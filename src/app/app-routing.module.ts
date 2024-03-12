@@ -6,6 +6,7 @@ import { authGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { LoggedLayoutComponent } from './layouts/logged-layout/logged-layout.component';
+import { DeckDetailsComponent } from './pages/deck-details/deck-details.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -13,7 +14,10 @@ const routes: Routes = [
     path: 'app',
     component: LoggedLayoutComponent,
     canActivate: [authGuard],
-    children: [{ path: 'dashboard', component: DashboardComponent }],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'deck/:id', component: DeckDetailsComponent },
+    ],
   },
   { path: '**', component: NotFoundComponent },
 ];

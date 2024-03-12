@@ -1,7 +1,7 @@
 <h2>Logged user</h2>
 
 @if(user) {
-<p>UID: {{ user.uid }}</p>
+<p>UID: {{ user.id }}</p>
 <p>Name: {{ user.displayName }}</p>
 <p>Email: {{ user.email }}</p>
 <p>
@@ -23,10 +23,10 @@
     </tr>
   </thead>
   <tbody>
-    @for(deck of decks; track deck.uuid) {
+    @for(deck of decks; track deck.id) {
     <tr>
       <td>{{ deck.name }}</td>
-      <td><button type="button">Ver</button></td>
+      <td><a [routerLink]="['/app/deck', deck.id ]">Ver</a></td>
     </tr>
     }
   </tbody>

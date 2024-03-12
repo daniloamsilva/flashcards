@@ -1,4 +1,4 @@
 export type Deck = {
-  uuid: string;
+  id: string;
   name: string;
 };

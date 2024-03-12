@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { UserService } from '../../services/user.service';
 import { User } from '../../types/user';
 import { Deck } from '../../types/deck';
 import { FirestoreService } from '../../services/firestore.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
@@ -29,11 +30,19 @@ export class DashboardComponent implements OnInit {
   }
 
   private async getDecks(): Promise<Deck[]> {
-    return await this.firestoreService.getDecks();
+    if (!this.user) {
+      return [];
+    }
+
+    return await this.firestoreService.getDecks(this.user.id);
   }
 
   public async handleCreateDeck() {
-    await this.firestoreService.createDeck(this.newDeckName);
+    if (!this.user) {
+      return;
+    }
+
+    await this.firestoreService.createDeck(this.user.id, this.newDeckName);
     this.decks = await this.getDecks();
     this.newDeckName = '';
   }
